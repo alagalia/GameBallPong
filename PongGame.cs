@@ -14,13 +14,14 @@ class PongGame
             ReDrawConsole();
         }
     }
-    static void RemoveScrollBars()
-    {
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.BufferHeight = Console.WindowHeight;
-        Console.BufferWidth = Console.WindowWidth;
-    }
-
+        static void RemoveScrollBars()
+        {
+            Console.WindowHeight = 40;
+            Console.WindowWidth = 80;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BufferHeight = Console.WindowHeight;
+            Console.BufferWidth = Console.WindowWidth;
+        }
     private static void SetInitialPositions()
     {
         //TODO: Set ball and players position before start of the game
