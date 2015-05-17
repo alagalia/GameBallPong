@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 class PongGame
 {
     //TODO: static variables for the game
