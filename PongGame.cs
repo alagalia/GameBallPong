@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 class PongGame
 {
     static int ballInitialX = Console.WindowWidth / 2;
@@ -17,13 +17,10 @@ class PongGame
     static int player2BatSize=5;
     static int player1Score = 0;
     static int player2Score = 0;
+    static Random randomNum = new Random();
 
     static void Main()
     {
-        
-
-        Random randomNum = new Random();
-
         RemoveScrollBars();
         while (true)
         {
@@ -33,6 +30,14 @@ class PongGame
             MoveBall();
             ReDrawConsole();
         }
+    }
+    static void RemoveScrollBars()
+    {
+        Console.WindowHeight = 40;
+        Console.WindowWidth = 80;
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BufferHeight = Console.WindowHeight;
+        Console.BufferWidth = Console.WindowWidth;
     }
     private static void SetInitialPositions()
     {
