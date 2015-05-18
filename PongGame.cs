@@ -19,7 +19,6 @@ class PongGame
     static int player2Score = 0;
     static Random randomNum = new Random();
     private static int difficulty = 0; // will be used as percents
-    private static int player2Size = 4; // player 2 size
 
     static void Main()
     {
@@ -40,7 +39,7 @@ class PongGame
     }
     private static void DrawPlayer2() /// принтира 2-ри играч
     {
-        for (int i = player2PositionY; i < player2PositionY + player2Size; i++)
+        for (int i = player2PositionY; i < player2PositionY + player2BatSize; i++)
         {
             PrintObjectAtPosition(0, i, player2Char);
             PrintObjectAtPosition(1, i, player2Char);
@@ -132,7 +131,7 @@ class PongGame
     {
         if (GenerateRandomNumber() <= difficulty && difficulty != 0)
         {
-            MoveAI();
+            MoveAIDependOnDifficult();
         }
     }
     //private static void CheckForMovementPlayer2() // може да се сложи и проверка за движението на 1-ви играч в този метод (и да се извика 2 пъти?)
@@ -147,18 +146,10 @@ class PongGame
     //        MoveSecondPlayerDown();
     //    }
     //}
-    private static void MoveAI() // движението на играч 2 (AI) спрямо топката
+    private static void MoveAIDependOnDifficult() // движението на играч 2 (AI) спрямо топката
     {
         if (ballMovingUp) MovePlayer2UP();
         else MovePlayer2DOWN();
-    }
-    private static void MovePlayer2UP() // играч 2 нагоре
-    {
-        if (player2PositionY > 0) player2PositionY--;
-    }
-    private static void MovePlayer2DOWN() // играч 2 надолу
-    {
-        if (player2PositionY < Console.WindowHeight - player2Size) player2PositionY++;
     }
 
     private static int GenerateRandomNumber() // генерира рандом номер спрямо трудността
@@ -167,6 +158,17 @@ class PongGame
         int generatedNumber = getRandomNumber.Next(1, 101);
         return generatedNumber;
     }
+
+    private static void MovePlayer2UP() // играч 2 нагоре
+    {
+        if (player2PositionY > 0) player2PositionY--;
+    }
+
+    private static void MovePlayer2DOWN() // играч 2 надолу
+    {
+        if (player2PositionY < Console.WindowHeight - player2BatSize) player2PositionY++;
+    }
+
     private static void MovePlayer1UP()
     {
         if (player1PositionY > 0)
