@@ -25,7 +25,6 @@ class PongGame
         ChooseDifficulty();
         RemoveScrollBars();
         SetStartPositions();
-        PrintResult(); //print start score 0-0
         while (true)
         {
             if (Console.KeyAvailable)
@@ -45,8 +44,8 @@ class PongGame
             DrawPlayer2();
             DrawBall();
             MoveAI(difficulty); //MovePlayer2(); - AI 
-            //MoveBall();
-            //ReDrawConsole();
+            MoveBall();
+            PrintResult(); //print start score 0-0
             Thread.Sleep(60);
         }
     }
@@ -116,11 +115,6 @@ class PongGame
         Console.Write(batSimbol);
     }
 
-    private static void ReDrawConsole()
-    {
-        //TODO: Clear console and draw new position of objects (players and ball)
-        throw new NotImplementedException();
-    }
     static void PrintResult()
     {
         Console.SetCursorPosition(Console.WindowWidth / 2 - 2, 0);
@@ -129,8 +123,73 @@ class PongGame
 
     private static void MoveBall()
     {
-        //TODO: ball movement
-        throw new NotImplementedException();
+        {
+            if (ballY == 0)
+            {
+                ballMovingUp = false;
+            }
+            if (ballY == Console.WindowHeight - 1)
+            {
+                ballMovingUp = true;
+            }
+            if (ballX == Console.WindowWidth - 1)
+            {
+                PutBallInInitialPosition();
+                ballMovingRight = false;
+                ballMovingUp = true;
+                player2Score++;
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2);
+                Console.WriteLine("Player 2 wins!");
+                Console.ReadKey();
+            }
+            if (ballX == 0)
+            {
+                PutBallInInitialPosition();
+                ballMovingRight = true;
+                ballMovingUp = false;
+                player1Score++;
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2);
+                Console.WriteLine("Player 1 wins!");
+                Console.ReadKey();
+            }
+
+            if (ballX < 3)
+            {
+                if (ballY >= player2PositionY
+                    && ballY < player2PositionY + player2BatSize) //проверка дали удря хилката в ляво
+                {
+                    ballMovingRight = true;
+                }
+            }
+
+            if (ballX >= Console.WindowWidth - 3 - 1) //проверка дали удря хилката в дясно
+            {
+                if (ballY >= player1PositionY
+                    && ballY < player1PositionY + player1BatSize)
+                {
+                    ballMovingRight = false;
+                }
+            }
+
+            if (ballMovingUp)
+            {
+                ballY--;
+            }
+            else
+            {
+                ballY++;
+            }
+
+
+            if (ballMovingRight)
+            {
+                ballX++;
+            }
+            else
+            {
+                ballX--;
+            }
+        }
     }
 
     private static void MovePlayer1()
