@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Threading;
 class PongGame
 {
@@ -13,24 +14,56 @@ class PongGame
     static int player1BatSize = 5;
     static char player1Char = '|';
     static int player2BatSize = 5;
-    static char player2Char;
+    static char player2Char = '|';
     static int player1Score = 0;
     static int player2Score = 0;
     static Random randomNum = new Random();
+    private static int difficulty = 0; // will be used as percents
+    private static int player2Size = 4; // player 2 size
 
     static void Main()
     {
+        ChooseDifficulty();
         RemoveScrollBars();
         SetStartPositions();
         while (true)
         {
+            Console.Clear();
             DrawPlayer1();
+            PrintSecondPlayer();
             DrawBall();
-            //MovePlayer2();
+            MoveSecondPlayerOrAI(difficulty); //MovePlayer2(); - AI 
             //MoveBall();
             //ReDrawConsole();
-            Console.Clear();
-            Thread.Sleep(0);
+            Thread.Sleep(60);
+        }
+    }
+    private static void PrintSecondPlayer() /// принтира 2-ри играч
+    {
+        for (int i = player2PositionY; i < player2PositionY + player2Size; i++)
+        {
+            PrintObjectAtPosition(0, i, player2Char);
+            PrintObjectAtPosition(1, i, player2Char);
+        }
+    }
+    private static void ChooseDifficulty() // трудността
+    {
+        Console.WriteLine("Please Select how the 2nd player will be controlled:\n(S)uper Easy AI\n(E)asy AI\n(M)edium AI\n(H)ard AI\n(I)mpossible AI\n(2)nd Player");
+        HashSet<string> allowed = new HashSet<string> { "S", "s", "E", "e", "M", "m", "H", "h", "I", "i", "2" };
+        string input = Console.ReadLine();
+        while (!allowed.Contains(input))
+        {
+            Console.WriteLine("Invalid input, please type the letter/number contained in the brackets next to your desired mode!");
+            input = Console.ReadLine();
+        }
+        switch (input.ToLower())
+        {
+            case "2": difficulty = 0; break; // 2nd player
+            case "s": difficulty = 10; break; // AI 10%
+            case "e": difficulty = 30; break; // AI 30%
+            case "m": difficulty = 50; break; // AI 50%
+            case "h": difficulty = 70; break; // AI 70%
+            case "i": difficulty = 90; break; // AI 90%
         }
     }
     static void RemoveScrollBars()
@@ -67,6 +100,7 @@ class PongGame
         for (int y = player1PositionY; y < player1PositionY + player1BatSize; y++)
         {
             PrintObjectAtPosition(player1X, y, player1Char); //TODO var char
+            PrintObjectAtPosition(player1X-1, y, player1Char); //TODO var char
         }
     }
 
@@ -106,7 +140,45 @@ class PongGame
             MovePlayer1DOWN();
         }
     }
-
+    private static void MoveSecondPlayerOrAI(int difficulty) // движението на AI спрямо трудността
+    {
+        if (GenerateRandomNumber() <= difficulty && difficulty != 0)
+        {
+            MoveAI();
+        }
+    }
+    //private static void CheckForMovementPlayer2() // може да се сложи и проверка за движението на 1-ви играч в този метод (и да се извика 2 пъти?)
+    //{
+    //    ConsoleKeyInfo key = Console.ReadKey();
+    //    if (key.Key == ConsoleKey.W)
+    //    {
+    //        MoveSecondPlayerUP();
+    //    }
+    //    else if (key.Key == ConsoleKey.S)
+    //    {
+    //        MoveSecondPlayerDown();
+    //    }
+    //}
+    private static void MoveAI() // движението на играч 2 (AI) спрямо топката
+    {
+        if (ballMovingUp) MoveSecondPlayerUP();
+        else MoveSecondPlayerDown();
+    }
+    private static void MoveSecondPlayerUP() // играч 2 нагоре
+    {
+        if (player2PositionY > 0) player2PositionY--;
+    }
+    private static void MoveSecondPlayerDown() // играч 2 надолу
+    {
+        if (player2PositionY < Console.WindowHeight - player2Size) player2PositionY++;
+    }
+ 
+    private static int GenerateRandomNumber() // генерира рандом номер спрямо трудността
+    {
+        Random getRandomNumber = new Random();
+        int generatedNumber = getRandomNumber.Next(1, 101);
+        return generatedNumber;
+    }
     private static void MovePlayer1UP()
     {
         if (player1PositionY > 0)
