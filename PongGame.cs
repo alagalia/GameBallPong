@@ -11,7 +11,7 @@ class PongGame
     static int player1PositionY = 0;
     static int player2X = 0;
     static int player2PositionY = 0;
-    static int player1BatSize = 5;
+    static int player1BatSize = 15;
     static char player1Char = '|';
     static int player2BatSize = 5;
     static char player2Char = '|';
@@ -19,6 +19,8 @@ class PongGame
     static int player2Score = 0;
     static Random randomNum = new Random();
     private static int difficulty = 0; // will be used as percents
+    private static string namePlayer1 = "Pesho";
+    private static string namePlayer2 = "Gosho";
 
     static void Main()
     {
@@ -117,8 +119,8 @@ class PongGame
 
     static void PrintResult()
     {
-        Console.SetCursorPosition(Console.WindowWidth / 2 - 2, 0);
-        Console.WriteLine("{0} - {1}", player2Score, player1Score);
+        Console.SetCursorPosition(Console.WindowWidth / 2 - 10, 0);
+        Console.WriteLine("{0} {1} - {2} {3}", namePlayer2, player2Score, player1Score, namePlayer1);
     }
 
     private static void MoveBall()
@@ -139,7 +141,7 @@ class PongGame
                 ballMovingUp = true;
                 player2Score++;
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2);
-                Console.WriteLine("Player 2 wins!");
+                Console.WriteLine("{0} wins!", namePlayer2);
                 Console.ReadKey();
             }
             if (ballX == 0)
@@ -149,7 +151,7 @@ class PongGame
                 ballMovingUp = false;
                 player1Score++;
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2);
-                Console.WriteLine("Player 1 wins!");
+                Console.WriteLine("{0} wins!", namePlayer1);
                 Console.ReadKey();
             }
 
