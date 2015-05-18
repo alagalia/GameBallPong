@@ -25,6 +25,7 @@ class PongGame
         ChooseDifficulty();
         RemoveScrollBars();
         SetStartPositions();
+        PrintResult(); //print start score 0-0
         while (true)
         {
             Console.Clear();
@@ -107,6 +108,11 @@ class PongGame
     {
         //TODO: Clear console and draw new position of objects (players and ball)
         throw new NotImplementedException();
+    }
+    static void PrintResult()
+    {
+        Console.SetCursorPosition(Console.WindowWidth / 2 - 2, 0);
+        Console.WriteLine("{0} - {1}", player2Score, player1Score);
     }
 
     private static void MoveBall()
