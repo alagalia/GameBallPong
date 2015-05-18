@@ -19,7 +19,6 @@ class PongGame
     static int player2Score = 0;
     static Random randomNum = new Random();
 
-
     static void Main()
     {
         RemoveScrollBars();
