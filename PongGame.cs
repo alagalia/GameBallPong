@@ -28,6 +28,18 @@ class PongGame
         PrintResult(); //print start score 0-0
         while (true)
         {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo whatIsTheKey = Console.ReadKey();
+                if (whatIsTheKey.Key == ConsoleKey.UpArrow)
+                {
+                    MovePlayer1UP();
+                }
+                if (whatIsTheKey.Key == ConsoleKey.DownArrow)
+                {
+                    MovePlayer1DOWN();
+                }
+            }
             Console.Clear();
             DrawPlayer1();
             DrawPlayer2();
