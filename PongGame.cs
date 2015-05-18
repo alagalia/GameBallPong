@@ -18,9 +18,10 @@ class PongGame
     static int player1Score = 0;
     static int player2Score = 0;
     static Random randomNum = new Random();
-    private static int difficulty = 0; // will be used as percents
-    private static string namePlayer1 = "Pesho";
-    private static string namePlayer2 = "Gosho";
+    static int difficulty = 0; // will be used as percents
+    static string namePlayer1 = "Pesho";
+    static string namePlayer2 = "Gosho";
+    static bool ballSpeed = true;
 
     static void Main()
     {
@@ -46,7 +47,11 @@ class PongGame
             DrawPlayer2();
             DrawBall();
             MoveAI(difficulty); //MovePlayer2(); - AI 
-            MoveBall();
+            if (ballSpeed)//забавя топката наполовина, прескача цикъл
+            {
+                MoveBall();
+            }
+            ballSpeed = !ballSpeed;
             PrintResult(); //print start score 0-0
             Thread.Sleep(60);
         }
