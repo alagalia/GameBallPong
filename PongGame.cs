@@ -30,15 +30,15 @@ class PongGame
         {
             Console.Clear();
             DrawPlayer1();
-            PrintSecondPlayer();
+            DrawPlayer2();
             DrawBall();
-            MoveSecondPlayerOrAI(difficulty); //MovePlayer2(); - AI 
+            MoveAI(difficulty); //MovePlayer2(); - AI 
             //MoveBall();
             //ReDrawConsole();
             Thread.Sleep(60);
         }
     }
-    private static void PrintSecondPlayer() /// принтира 2-ри играч
+    private static void DrawPlayer2() /// принтира 2-ри играч
     {
         for (int i = player2PositionY; i < player2PositionY + player2Size; i++)
         {
@@ -89,18 +89,12 @@ class PongGame
         PrintObjectAtPosition(ballX, ballY, '@');
     }
 
-    private static void DrawPlayer2()
-    {
-        //TODO:
-        throw new NotImplementedException();
-    }
-
     private static void DrawPlayer1()
     {
         for (int y = player1PositionY; y < player1PositionY + player1BatSize; y++)
         {
             PrintObjectAtPosition(player1X, y, player1Char); //TODO var char
-            PrintObjectAtPosition(player1X-1, y, player1Char); //TODO var char
+            PrintObjectAtPosition(player1X - 1, y, player1Char); //TODO var char
         }
     }
 
@@ -122,13 +116,7 @@ class PongGame
         throw new NotImplementedException();
     }
 
-    private static void MovePlayer2()
-    {
-        //TODO: implement how to move first palayer
-        throw new NotImplementedException();
-    }
-
-    private static void MoveFirstPlayer()
+    private static void MovePlayer1()
     {
         ConsoleKeyInfo whatIsTheKey = Console.ReadKey();
         if (whatIsTheKey.Key == ConsoleKey.UpArrow)
@@ -140,7 +128,7 @@ class PongGame
             MovePlayer1DOWN();
         }
     }
-    private static void MoveSecondPlayerOrAI(int difficulty) // движението на AI спрямо трудността
+    private static void MoveAI(int difficulty) // движението на AI спрямо трудността
     {
         if (GenerateRandomNumber() <= difficulty && difficulty != 0)
         {
@@ -161,18 +149,18 @@ class PongGame
     //}
     private static void MoveAI() // движението на играч 2 (AI) спрямо топката
     {
-        if (ballMovingUp) MoveSecondPlayerUP();
-        else MoveSecondPlayerDown();
+        if (ballMovingUp) MovePlayer2UP();
+        else MovePlayer2DOWN();
     }
-    private static void MoveSecondPlayerUP() // играч 2 нагоре
+    private static void MovePlayer2UP() // играч 2 нагоре
     {
         if (player2PositionY > 0) player2PositionY--;
     }
-    private static void MoveSecondPlayerDown() // играч 2 надолу
+    private static void MovePlayer2DOWN() // играч 2 надолу
     {
         if (player2PositionY < Console.WindowHeight - player2Size) player2PositionY++;
     }
- 
+
     private static int GenerateRandomNumber() // генерира рандом номер спрямо трудността
     {
         Random getRandomNumber = new Random();
