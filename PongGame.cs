@@ -57,15 +57,15 @@ class PongGame
         throw new NotImplementedException();
     }
 
-    private static void MoveSecondPlayer()
+    private static void MovePlayer2()
     {
-        //TODO: implement how to move first palayer
+        //TODO: implement how to move first palayer (AI) - in the left side of the field
         throw new NotImplementedException();
     }
 
-    private static void MoveFirstPlayer()
+    private static void MovePlayer1()
     {
-        //TODO: implement how to move first palayer (AI)
+        //TODO: implement how to move first palayer - in the right side of the field
         throw new NotImplementedException();
     }
 }
