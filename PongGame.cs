@@ -43,6 +43,7 @@ class PongGame
                 }
             }
             Console.Clear();
+            ShowBricks();//Метод за препятствията
             DrawPlayer1();
             DrawPlayer2();
             DrawBall();
@@ -268,4 +269,24 @@ class PongGame
             player1PositionY++;
         }
     }
+    private static void ShowBricks()
+    {
+        Random rnd = new Random();
+        int timeWhenBrickShow = rnd.Next(0, 5000);
+        int brickPositionX = rnd.Next(10, Console.WindowWidth - 10);
+        int brickPositionY = rnd.Next(3, Console.WindowHeight - 3);
+        if (timeWhenBrickShow < 5)
+        {
+            DrawBrick(brickPositionX, brickPositionY);
+        }
+    }
+    private static void DrawBrick(int brickX, int brickY)
+    {
+        Console.SetCursorPosition(brickX, brickY);
+        for (int i = brickY; i < brickY + 4; i++)
+        {
+            PrintObjectAtPosition(brickX, i, '*');
+        }
+    }
+
 }
