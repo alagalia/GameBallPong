@@ -47,6 +47,14 @@ class PongGame
                     MovePlayer1DOWN();
                 }
             }
+            if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo pause = Console.ReadKey();
+                    if (pause.Key == ConsoleKey.P && pause.Modifiers == ConsoleModifiers.Control)
+                    {
+                        PauseGame();
+                    }
+                }
             Console.Clear();
             HoldObstacleFor();
             DrawPlayer1();
@@ -62,6 +70,12 @@ class PongGame
             Thread.Sleep(40);
         }
     }
+    static void PauseGame()  
+        {
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, 2);
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey(true);
+        }
 
     private static void DrawPlayer2() /// принтира 2-ри играч
     {
