@@ -24,9 +24,9 @@ class PongGame
     static bool ballSpeed = true;
     static bool brickIsSpawned = false;
     static int brickTurnCounter = 0;
-    static int turnsToStay = 100;
+    static int turnsToStay = 200;
     static int brickPositionX = 0;
-    static int brickPositionY = 0; 
+    static int brickPositionY = 0;
 
     static void Main()
     {
@@ -59,7 +59,7 @@ class PongGame
             }
             ballSpeed = !ballSpeed;
             PrintResult(); //print start score 0-0
-            Thread.Sleep(20);
+            Thread.Sleep(40);
         }
     }
 
@@ -146,6 +146,7 @@ class PongGame
             {
                 ballMovingUp = true;
             }
+            //проверка дали десният играч изпуска топката
             if (ballX == Console.WindowWidth - 1)
             {
                 PutBallInInitialPosition();
@@ -156,6 +157,8 @@ class PongGame
                 Console.WriteLine("{0} wins!", namePlayer2);
                 Console.ReadKey();
             }
+
+            //Проверка дали левият играч изпуска топката
             if (ballX == 0)
             {
                 PutBallInInitialPosition();
@@ -167,16 +170,26 @@ class PongGame
                 Console.ReadKey();
             }
 
+            //проверка дали удря в препятствие
+            if ((ballX == brickPositionX - 1 && ballY >= brickPositionY && ballY < brickPositionY + 4) ||
+                (ballX == brickPositionX + 1 && ballY >= brickPositionY && ballY < brickPositionY + 4))
+            {
+                ballMovingRight = !ballMovingRight;
+                ballMovingUp = !ballMovingUp;
+            }
+
+            //проверка дали удря хилката в ляво
             if (ballX < 3)
             {
                 if (ballY >= player2PositionY
-                    && ballY < player2PositionY + player2BatSize) //проверка дали удря хилката в ляво
+                    && ballY < player2PositionY + player2BatSize)
                 {
                     ballMovingRight = true;
                 }
             }
 
-            if (ballX >= Console.WindowWidth - 3 - 1) //проверка дали удря хилката в дясно
+            //проверка дали удря хилката в дясно
+            if (ballX >= Console.WindowWidth - 3 - 1)
             {
                 if (ballY >= player1PositionY
                     && ballY < player1PositionY + player1BatSize)
