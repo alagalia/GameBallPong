@@ -22,6 +22,11 @@ class PongGame
     static string namePlayer1 = "Pesho";
     static string namePlayer2 = "Gosho";
     static bool ballSpeed = true;
+    static bool brickIsSpawned = false;
+    static int brickTurnCounter = 0;
+    static int turnsToStay = 100;
+    static int brickPositionX = 0;
+    static int brickPositionY = 0; 
 
     static void Main()
     {
@@ -43,7 +48,7 @@ class PongGame
                 }
             }
             Console.Clear();
-            ShowBricks();//Метод за препятствията
+            HoldObstacleFor();
             DrawPlayer1();
             DrawPlayer2();
             DrawBall();
@@ -54,9 +59,10 @@ class PongGame
             }
             ballSpeed = !ballSpeed;
             PrintResult(); //print start score 0-0
-            Thread.Sleep(60);
+            Thread.Sleep(20);
         }
     }
+
     private static void DrawPlayer2() /// принтира 2-ри играч
     {
         for (int i = player2PositionY; i < player2PositionY + player2BatSize; i++)
@@ -273,11 +279,12 @@ class PongGame
     {
         Random rnd = new Random();
         int timeWhenBrickShow = rnd.Next(0, 5000);
-        int brickPositionX = rnd.Next(10, Console.WindowWidth - 10);
-        int brickPositionY = rnd.Next(3, Console.WindowHeight - 3);
-        if (timeWhenBrickShow < 5)
+        brickPositionX = rnd.Next(10, Console.WindowWidth - 10);
+        brickPositionY = rnd.Next(3, Console.WindowHeight - 3);
+        if (timeWhenBrickShow < 4950)
         {
             DrawBrick(brickPositionX, brickPositionY);
+            brickIsSpawned = true;
         }
     }
     private static void DrawBrick(int brickX, int brickY)
@@ -286,6 +293,20 @@ class PongGame
         for (int i = brickY; i < brickY + 4; i++)
         {
             PrintObjectAtPosition(brickX, i, '*');
+        }
+    }
+    private static void HoldObstacleFor()
+    {
+        if (brickIsSpawned && brickTurnCounter <= turnsToStay)
+        {
+            DrawBrick(brickPositionX, brickPositionY);
+            brickTurnCounter++;
+        }
+        else
+        {
+            brickTurnCounter = 0;
+            brickIsSpawned = false;
+            ShowBricks();//Метод за препятствията
         }
     }
 
