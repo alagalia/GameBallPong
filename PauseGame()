@@ -1,0 +1,14 @@
+if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo pause = Console.ReadKey();
+                    if (pause.Key == ConsoleKey.P && pause.Modifiers == ConsoleModifiers.Control)
+                    {
+                        PauseGame();
+                    }
+                }
+                static void PauseGame()  
+        {
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, 2);
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey(true);
+        }
