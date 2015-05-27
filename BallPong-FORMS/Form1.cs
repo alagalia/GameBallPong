@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1
         private bool movingRight = true;
         private bool movingUp = true;
         private int ballSpeed = 20;
+
         private void Move_AI(int diffictulty)
         {
             Random rnd = new Random();
@@ -42,6 +43,33 @@ namespace WindowsFormsApplication1
                         pictureBox2.Location = new Point(Player2X, Player2Y);
                     }
                 }
+            }
+        }
+
+        private void CheckForPoint()
+        {
+            if (circle.X <= ClientRectangle.Left)
+            {
+                scored = true;
+                Public_Properties.Player1Score++;
+            }
+            if (circle.X >= ClientRectangle.Width)
+            {
+                scored = true;
+                Public_Properties.Player2Score++;
+            }
+            if (Public_Properties.Player1Score == maxScore) Winner(Public_Properties.Player1Name);
+            else if (Public_Properties.Player2Score == maxScore) Winner(Public_Properties.Player2Name);
+            else if (scored)
+            {
+                UpdateScores();
+                timer1.Stop();
+                label6.Visible = true;
+                SetInitialPositions();
+                scored = false;
+                scorePause = true;
+                timer2.Enabled = true;
+                timer2.Start();
             }
         }
 
