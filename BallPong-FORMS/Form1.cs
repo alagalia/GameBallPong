@@ -167,6 +167,12 @@ namespace WindowsFormsApplication1
             circle.Y = initialBallY;
         }
         
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Public_Properties.Player1Score = 0;
+            Public_Properties.Player2Score = 0;
+        }
+        
         private void SpawnRandomWall()
         {
             if (!spawnedWall)
