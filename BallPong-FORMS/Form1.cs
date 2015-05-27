@@ -25,7 +25,26 @@ namespace WindowsFormsApplication1
         private int wallTmpX;
         private int wallTmpY;
 
-       private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (circle.IntersectsWith(pictureBox1.Bounds)) movingRight = false;
+            else if (circle.IntersectsWith(pictureBox2.Bounds)) movingRight = true;
+            if (circle.IntersectsWith(pictureBox3.Bounds)) movingUp = false;
+            else if (circle.IntersectsWith(pictureBox4.Bounds)) movingUp = true;
+            if (movingRight) circle.X += ballSpeed;
+            else circle.X -= ballSpeed;
+            if (movingUp) circle.Y -= ballSpeed;
+            else circle.Y += ballSpeed;
+            if (circle.IntersectsWith(wall))
+            {
+                movingRight = !movingRight;
+            }
+            if (!secondPlayer) Move_AI(Public_Properties.Difficulty);
+            SpawnRandomWall();
+            CheckForPoint();
+            Invalidate();
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (!paused)
             {
