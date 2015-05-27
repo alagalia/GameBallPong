@@ -20,6 +20,10 @@ namespace WindowsFormsApplication1
         private bool movingRight = true;
         private bool movingUp = true;
         private int ballSpeed = 20;
+        private bool spawnedWall = false;
+        private int wallTurnCounter = 0;
+        private int wallTmpX;
+        private int wallTmpY;
 
         private void Move_AI(int diffictulty)
         {
