@@ -94,6 +94,19 @@ namespace WindowsFormsApplication1
             timer1.Start(); //пускам таймера и той започва да влиза в метода долу
             this.DoubleBuffered = true; // има малко лаг, но стената и топката не премигват
         }
+        
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.DrawEllipse(new Pen(Color.Red,2),circle );
+            g.FillEllipse(new SolidBrush(Color.Red),circle );
+            if (spawnedWall)
+            {
+                wall = new Rectangle(wallTmpX, wallTmpY, 10, 60);
+                g.DrawRectangle(new Pen(Color.White,2),wall);
+                g.FillRectangle(new SolidBrush(Color.White),wall );
+            }
+        }
 
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
