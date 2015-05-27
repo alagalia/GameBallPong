@@ -25,6 +25,53 @@ namespace WindowsFormsApplication1
         private int wallTmpX;
         private int wallTmpY;
 
+       private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!paused)
+            {
+                if (e.KeyCode == Keys.Up)
+                {
+                    if (!pictureBox1.Bounds.IntersectsWith(pictureBox3.Bounds)) Player1Y -= PlayerSpeed;
+                }
+                if (e.KeyCode == Keys.Down)
+                {
+                    if (!pictureBox1.Bounds.IntersectsWith(pictureBox4.Bounds)) Player1Y += PlayerSpeed;
+                }
+                pictureBox1.Location = new Point(Player1X, Player1Y);
+                if (secondPlayer)
+                {
+                    if (e.KeyCode == Keys.W)
+                    {
+                        if (!pictureBox2.Bounds.IntersectsWith(pictureBox3.Bounds)) Player2Y -= PlayerSpeed;
+                    }
+                    if (e.KeyCode == Keys.S)
+                    {
+                        if (!pictureBox2.Bounds.IntersectsWith(pictureBox4.Bounds)) Player2Y += PlayerSpeed;
+                    }
+                    pictureBox2.Location = new Point(Player2X, Player2Y);
+                }
+            }
+            if (e.KeyCode == Keys.P && !scorePause)
+            {
+                if (paused)
+                {
+                    paused = false;
+                    timer1.Start();
+                }
+                else
+                {
+                    timer1.Stop();
+                    paused = true;
+                }
+            }
+            if (gameOver)
+            {
+                if (e.KeyCode == Keys.Space)
+                {
+                    this.Close();
+                }
+            }
+        }
         private void Move_AI(int diffictulty)
         {
             Random rnd = new Random();
