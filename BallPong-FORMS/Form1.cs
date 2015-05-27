@@ -213,7 +213,12 @@ namespace WindowsFormsApplication1
             label6.Text = player+"\n    WINS!";
             timer1.Stop();
             gameOver = true;
-
+        }
+        
+        private void UpdateScores()
+        {
+            label3.Text = Public_Properties.Player2Score.ToString();
+            label4.Text = Public_Properties.Player1Score.ToString();
         }
 
         private void SetInitialPositions()
