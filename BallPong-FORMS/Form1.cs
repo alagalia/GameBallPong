@@ -96,6 +96,14 @@ namespace WindowsFormsApplication1
             Invalidate();
 
         }
+        private void Winner(string player)
+        {
+            label6.Visible = true;
+            label6.Text = player+"\n    WINS!";
+            timer1.Stop();
+            gameOver = true;
+
+        }
 
         private void SetInitialPositions()
         {
