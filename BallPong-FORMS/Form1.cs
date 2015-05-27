@@ -121,5 +121,21 @@ namespace WindowsFormsApplication1
             circle.X = intitialBallX;
             circle.Y = initialBallY;
         }
+        private void DirectionsHelp()
+        {
+            if (movingRight)
+            {
+                if (movingUp) pictureBox5.Location=new Point(1069,43);
+                else pictureBox5.Location=new Point(1069,568);
+                pictureBox5.Image = Properties.Resources.arrow;
+            }
+            else
+            {
+                if (movingUp) pictureBox5.Location=new Point(97,43);
+                else pictureBox5.Location=new Point(97,568);
+                pictureBox5.Image = Properties.Resources.arrow2;
+            }
+            pictureBox5.Visible = true;
+        }
     }
 }
