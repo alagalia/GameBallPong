@@ -87,5 +87,22 @@ namespace WindowsFormsApplication1
             Invalidate();
 
         }
+
+        private void SetInitialPositions()
+        {
+            intitialBallX = ClientRectangle.Width / 2;
+            initialBallY = ClientRectangle.Height / 2;
+            Random rand = new Random();
+            if (rand.Next(1, 51) >= 25) movingRight = !movingRight;
+            if (rand.Next(1, 51) <= 25) movingUp = !movingUp;
+            pictureBox1.Location = new Point(initialPlayer1X, initialPlayer1Y);
+            pictureBox2.Location = new Point(initialPlayer2X, initialPlayer2Y);
+            Player1X = initialPlayer1X;
+            Player1Y = initialPlayer1Y;
+            Player2X = initialPlayer2X;
+            Player2Y = initialPlayer2Y;
+            circle.X = intitialBallX;
+            circle.Y = initialBallY;
+        }
     }
 }
