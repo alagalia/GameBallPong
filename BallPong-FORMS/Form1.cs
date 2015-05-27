@@ -52,6 +52,15 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SetInitialPositions();
+            pictureBox1.BackColor = Public_Properties.Player1Color;
+            pictureBox2.BackColor = Public_Properties.Player2Color;
+            label1.Text = Public_Properties.Player2Name;
+            label2.Text = Public_Properties.Player1Name;
+            if (Public_Properties.Difficulty == 0) secondPlayer = true;
+            timer1.Enabled = true;
+            timer1.Start(); //пускам таймера и той започва да влиза в метода долу
+            this.DoubleBuffered = true; // има малко лаг, но стената и топката не премигват
         }
 
 
