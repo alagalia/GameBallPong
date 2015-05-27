@@ -149,6 +149,30 @@ namespace WindowsFormsApplication1
             circle.X = intitialBallX;
             circle.Y = initialBallY;
         }
+        
+        private void SpawnRandomWall()
+        {
+            if (!spawnedWall)
+            {
+                Random rnd = new Random();
+                if (rnd.Next(1, 101) <= 20)
+                {
+                    wallTmpX = rnd.Next(110, 1101);
+                    wallTmpY = rnd.Next(0, 700);
+                    spawnedWall = true;
+                }
+            }
+            else
+            {
+                wallTurnCounter++;
+                if (wallTurnCounter == wallTurns)
+                {
+                    wallTurnCounter = 0;
+                    spawnedWall = false;
+                }
+            }
+        }
+        
         private void DirectionsHelp()
         {
             if (movingRight)
