@@ -1,0 +1,10 @@
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+c:\users\marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Load.resources
+C:\Users\Marto\documents\visual studio 2013\projects\SoftUni\Pong_Forms_Recreation\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
